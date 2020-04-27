@@ -1,0 +1,22 @@
+[
+    {
+        "subject": "My first message",
+        "body": "Non tempor sint dolor pariatur amet aute laboris excepteur commodo eiusmod duis nulla nisi. Est dolor consequat Lorem proident sit enim id duis sunt in. Deserunt et ex sint occaecat pariatur.Nulla aute commodo tempor commodo esse ipsum duis officia laboris ex nostrud. Culpa tempor pariatur velit enim et officia tempor aliquip eiusmod in magna dolor. Consectetur voluptate ullamco voluptate non anim in velit. Voluptate reprehenderit reprehenderit adipisicing minim aute in. Velit fugiat veniam dolore est reprehenderit eiusmod aliquip occaecat proident."
+    },
+    {
+        "subject": "My second message",
+        "body": "Non tempor sint dolor pariatur amet aute laboris excepteur commodo eiusmod duis nulla nisi. Est dolor consequat Lorem proident sit enim id duis sunt in. Deserunt et ex sint occaecat pariatur."
+    },
+    {
+        "subject": "You won lottery",
+        "body": "Non tempor sint dolor pariatur amet aute laboris excepteur commodo eiusmod duis nulla nisi. Est dolor consequat Lorem proident sit enim id duis sunt in. Deserunt et ex sint occaecat pariatur."
+    },
+    {
+        "subject": "You should read this message",
+        "body": "Non tempor sint dolor pariatur amet aute laboris excepteur commodo eiusmod duis nulla nisi. Est dolor consequat Lorem proident sit enim id duis sunt in. Deserunt et ex sint occaecat pariatur."
+    },
+    {
+        "subject": "Another entry from JSON",
+        "body": "Non tempor sint dolor pariatur amet aute laboris excepteur commodo eiusmod duis nulla nisi. Est dolor consequat Lorem proident sit enim id duis sunt in. Deserunt et ex sint occaecat pariatur."
+    }
+] 
