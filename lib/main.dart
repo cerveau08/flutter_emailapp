@@ -13,6 +13,7 @@ class EmailApp extends StatelessWidget {
         accentColor: Colors.blue
       ),  
       home: MessageList(title: 'Flutter EmailApp'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
