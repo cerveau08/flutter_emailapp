@@ -11,5 +11,8 @@
         "titleBar.inactiveBackground": "#02030099",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#020300"
+    "peacock.color": "#020300",
+    "cSpell.words": [
+        "serializable"
+    ]
 }

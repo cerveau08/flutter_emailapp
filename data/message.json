@@ -18,5 +18,9 @@
     {
         "subject": "Another entry from JSON",
         "body": "Non tempor sint dolor pariatur amet aute laboris excepteur commodo eiusmod duis nulla nisi. Est dolor consequat Lorem proident sit enim id duis sunt in. Deserunt et ex sint occaecat pariatur."
+    },
+    {
+        "subject": "Is Automatic Serialization Working?",
+        "body": "Non tempor sint dolor pariatur amet aute laboris excepteur commodo eiusmod duis nulla nisi. Est dolor consequat Lorem proident sit enim id duis sunt in. Deserunt et ex sint occaecat pariatur."
     }
 ] 
