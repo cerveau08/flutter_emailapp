@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:emailapp/ComposeButton.dart';
 import 'package:emailapp/Message.dart';
+import 'package:emailapp/MessageCompose.dart';
+import 'package:emailapp/MessageDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
 
@@ -60,16 +63,23 @@ class _MessageListState extends State<MessageList> {
                     message.body,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => 
+                          MessageDetail(message.subject, message.body)
+                    )); 
+                  },
                   );
                 },
               );
             }
           },
-       
-        )
-            /*  */
-        );
+        ),
+        floatingActionButton: ComposeButton() 
+    );
   }
   
 }
