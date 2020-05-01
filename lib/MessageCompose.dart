@@ -1,38 +1,72 @@
+import 'package:emailapp/Message.dart';
 import 'package:flutter/material.dart';
 
-class MessageCompose extends StatelessWidget {
+class MessageCompose extends StatefulWidget {
+  @override
+  _MessageComposeState createState() => _MessageComposeState();
+}
+
+class _MessageComposeState extends State<MessageCompose> {
+  String to = "";
+  String subject = "";
+  String body = "";
+
+  final key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Compose New Message"),
       ),
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text("Compose New Message",
-              style: Theme.of(context).textTheme.title)
-,            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                RaisedButton(
-                  child: Text("Love"),
-                  onPressed: () {
-                    Navigator.pop(context, "Love");
-                  },
+      body: SingleChildScrollView(
+        child: Form(
+          key: key,
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                title: TextFormField(
+                  onSaved: (value) => to = value,
+                  decoration: InputDecoration(
+                    labelText: 'TO',
+                    labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+              ),
+              ListTile(
+                title: TextFormField(
+                  onSaved: (value) => subject = value,
+                  decoration: InputDecoration(
+                    labelText: 'SUBJECT',
+                    labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-                RaisedButton(
-                  child: Text("Hate"),
+              ),
+              Divider(),
+              ListTile(
+                title: TextFormField(
+                  onSaved: (value) => body = value,
+                  decoration: InputDecoration(
+                    labelText: 'BODY',
+                    labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  maxLines: 9,
+                ),
+              ),
+              ListTile(
+                title: RaisedButton(
+                  child: Text('SEND'),
                   onPressed: () {
-                    Navigator.pop(context, "Hate");
-                  }
-                )
-            ],)
-          ]
-        ),
-      ),
+                    this.key.currentState.save();
+                    Message message = Message(subject, body);
+                    
+                    Navigator.pop(context, message);
+                  },
+                  ),
+              )
+            ]
+          ),
+        )
+      )
     );
   }
 } 
