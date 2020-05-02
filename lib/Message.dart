@@ -18,7 +18,7 @@ class Message {
   static Future<List<Message>> browse() async{
     
     http.Response response =
-      await http.get('http://www.mocky.io/v2/5ea9e3412d00005b002683d3');
+      await http.get('http://www.mocky.io/v2/5eadb4712f00004b00198848');
     await Future.delayed(Duration(seconds: 3));
     String content = response.body;
     List collection = json.decode(content);
