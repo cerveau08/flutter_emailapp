@@ -1,38 +1,50 @@
 import 'package:emailapp/AppDrawer.dart';
+import 'package:emailapp/CalendarScreen.dart';
+import 'package:emailapp/ContactScreen.dart';
+import 'package:emailapp/InboxScreen.dart';
 import 'package:emailapp/MessageList.dart';
 import 'package:flutter/material.dart';
 
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+  
+}
 
-class App extends StatelessWidget {
+class _AppState extends State<App> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      child: Scaffold(
-        appBar: AppBar(
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () async {
-                
-              },
-            )
-          ],
-          bottom: TabBar(
-            tabs: <Widget>[
-              Tab(text: "important"),
-              Tab(text: "Other"),
-            ]
+    return Scaffold(
+      body: [
+        InboxScreen(),
+        ContactScreen(),
+        CalendarScreen(),
+      ].elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            title: Text("Inbox"), 
+            icon: Icon(Icons.mail)
           ),
-        ),
-        drawer: AppDrawer(),
-        body: TabBarView(
-          children: <Widget>[
-            MessageList(status: 'important'),
-            MessageList(status: 'other'),
-          ]
-        ),
+          BottomNavigationBarItem(
+            title: Text("Contacts"), 
+            icon: Icon(Icons.people)
+          ),
+          BottomNavigationBarItem(
+            title: Text("Calendar"), 
+            icon: Icon(Icons.calendar_today)
+          ),
+        ],
+        onTap: _onBarItemTap,
+        currentIndex: _selectedIndex,
       ),
-      length: 2,
     );
   }
+  void _onBarItemTap(int value) {
+    setState(() {
+      _selectedIndex = value;
+    });
+  }
 }
+
