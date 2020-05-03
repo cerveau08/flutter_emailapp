@@ -7,6 +7,9 @@ import 'package:emailapp/MessageDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+
 
 class MessageList extends StatefulWidget {
   final String title;
@@ -36,12 +39,80 @@ class _MessageListState extends State<MessageList> {
           IconButton(
             icon: Icon(Icons.refresh),
             onPressed: () async {
-              var _messages = await Message.browse();
               setState(() {
-                messages = _messages;
-            });
-          })
+                future = Message.browse();
+              });
+            },
+          )
         ],
+        ),
+        drawer: Drawer(
+          child: Column(
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                accountEmail: Text("malickcoly342@gmail.com"),
+                accountName: Text("Malick COLY"),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    "https://avatars1.githubusercontent.com/u/55498348?s=460&u=126c86a4295c6eb7114f93926ee6a12447ba6250&v=4"
+                  ),
+                ),
+                otherAccountsPictures: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("adding new account ...")
+                          );
+                        },
+                      );
+                    },
+                    child: CircleAvatar(
+                      child: Icon(Icons.add)
+                  )
+                  )
+                ],
+              ),
+              
+              ListTile(
+                leading: FaIcon(FontAwesomeIcons.inbox),
+                title: Text("Inbox"),
+                trailing: Chip(
+                  label: 
+                    Text("88", style: TextStyle(fontWeight: FontWeight.bold)),
+                  backgroundColor: Colors.blue[100],
+                  ),
+              ),
+              ListTile(
+                leading: FaIcon(FontAwesomeIcons.edit),
+                title: Text("Draft")
+              ),
+              ListTile(
+                leading: FaIcon(FontAwesomeIcons.archive),
+                title: Text("Archive")
+              ),
+              ListTile(
+                leading: FaIcon(FontAwesomeIcons.paperPlane),
+                title: Text("Sent")
+              ),
+              ListTile(
+                leading: FaIcon(FontAwesomeIcons.trash),
+                title: Text("Trash")
+              ),
+              Divider(),
+              Expanded(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: ListTile(
+                    leading: FaIcon(FontAwesomeIcons.cog),
+                    title: Text("Settings"),
+                    )
+                )
+                )
+            ]
+          ),
         ),
         body: FutureBuilder(
           future: future,
@@ -60,26 +131,63 @@ class _MessageListState extends State<MessageList> {
               separatorBuilder: (context, index) => Divider(),
               itemBuilder: (BuildContext context, int index) {
                 Message message = messages[index];
-                return ListTile(
-                  title: Text(message.subject),
-                  isThreeLine: true,
-                  leading: CircleAvatar(
-                    child: Text('Cerv'),
+                return Slidable(
+                  actionPane: SlidableDrawerActionPane(),
+                  actionExtentRatio: 0.25,
+                  actions: <Widget>[
+                    IconSlideAction(
+                      caption: 'Archive',
+                      color: Colors.blue,
+                      icon: Icons.archive,
+                      onTap: () {},
+                    ),
+                    IconSlideAction(
+                      caption: 'Share',
+                      color: Colors.indigo,
+                      icon: Icons.share,
+                      onTap: () {},
+                    ),
+                  ],
+                  secondaryActions: <Widget>[
+                    IconSlideAction(
+                      caption: 'More',
+                      color: Colors.black45,
+                      icon: Icons.more_horiz,
+                      onTap: () {},
+                    ),
+                    IconSlideAction(
+                      caption: 'Delete',
+                      color: Colors.red,
+                      icon: Icons.delete,
+                      onTap: () => {
+                        setState(() {
+                          messages.removeAt(index);
+                        })
+                      },
+                    ),
+                  ],
+                  child: ListTile(
+                    title: Text(message.subject),
+                    isThreeLine: true,
+                    leading: CircleAvatar(
+                      child: Text('Cerv'),
+                    ),
+                    subtitle: Text(
+                      message.body,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => 
+                            MessageDetail(message.subject, message.body)
+                      )); 
+                    },
                   ),
-                  subtitle: Text(
-                    message.body,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => 
-                          MessageDetail(message.subject, message.body)
-                    )); 
-                  },
-                  );
+                  key: ObjectKey(message),
+                );
                 },
               );
             }
