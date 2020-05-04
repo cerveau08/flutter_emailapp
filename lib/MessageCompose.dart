@@ -32,8 +32,8 @@ class _MessageComposeState extends State<MessageCompose> {
                   decoration: InputDecoration(
                     labelText: 'TO',
                     labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                    ),
                   ),
+                ),
               ),
               ListTile(
                 title: TextFormField(
@@ -74,7 +74,7 @@ class _MessageComposeState extends State<MessageCompose> {
                       Navigator.pop(context, message);
                     }
                   },
-                  ),
+                ),
               )
             ]
           ),

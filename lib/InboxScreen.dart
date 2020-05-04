@@ -26,10 +26,10 @@ class InboxScreen extends StatelessWidget {
         ),
         drawer: AppDrawer(),
         body: TabBarView(
-            children: <Widget>[
-              MessageList(status: 'important'),
-              MessageList(status: 'other'),
-            ]
+          children: <Widget>[
+            MessageList(status: 'important'),
+            MessageList(status: 'other'),
+          ]
         ),
       ),
       length: 2,

@@ -9,7 +9,7 @@ class MessageDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(this.subject)),
       body: Container(padding: EdgeInsets.all(16), child: Text(this.body))
-      ); 
+    ); 
   }
 }
 
