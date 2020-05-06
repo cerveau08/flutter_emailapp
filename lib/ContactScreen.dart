@@ -1,40 +1,29 @@
 import 'package:emailapp/AppDrawer.dart';
+import 'package:emailapp/ContactCounter.dart';
 import 'package:emailapp/ContactListBuilder.dart';
 import 'package:emailapp/ContactManager.dart';
 import 'package:emailapp/ContactSearchDelegate.dart';
-import 'package:emailapp/model/Contact..dart';
+import 'package:emailapp/Provider.dart';
+import 'package:emailapp/model/Contact.dart';
 import 'package:flutter/material.dart';
 
 class ContactScreen extends StatelessWidget {
-  ContactManager manager = ContactManager();
+  //final manager = ContactManager();
   @override
   Widget build(BuildContext context) {
+    
     return DefaultTabController(
       child: Scaffold(
         appBar: AppBar(
           title: Text("Contacts"),
           actions: <Widget>[
-            StreamBuilder<int>(
-              stream: manager.contactCounter,
-              builder: (context, snapshot) {
-                return Chip( 
-                  label: Text(
-                    (snapshot.data ?? 0).toString(),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    )
-                  ),
-                  backgroundColor: Colors.red,
-                );
-              }
-            ),
+            ContactConuter(),
             IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
                 showSearch(
                   context: context, 
-                  delegate: ContactSearchDelegate(manager: manager),
+                  delegate: ContactSearchDelegate( ),
                 );
               },
             ),
@@ -45,7 +34,6 @@ class ContactScreen extends StatelessWidget {
         ),
         drawer: AppDrawer(),
         body: ContactListBuilder(
-          stream: manager.contactListView,
           builder: (context, contacts) {
             return ListView.separated(
               itemCount: contacts?.length ?? 0,

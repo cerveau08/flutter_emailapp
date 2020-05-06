@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:emailapp/model/Contact..dart';
+import 'package:emailapp/model/Contact.dart';
 import 'package:http/http.dart' as http;
 
 class ContactService {
